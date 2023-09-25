@@ -1,0 +1,13 @@
+<config>
+
+	<bean id="1.4">
+		<field>field1</field>
+		<label>Test label 1</label>
+	</bean>
+
+	<bean id="1.5">
+		<field>field2</field>
+		<label>Test label 2</label>
+	</bean>
+	
+</config>
