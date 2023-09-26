@@ -52,8 +52,7 @@ public class LabelExtract implements ConvertRule {
 			String text = fromTag.getTextContent();
 			log.info( "content -> {}", text );
 			Element toTag = ruleContext.getDocument().createElement( this.elementTo );
-			String key = text.replace( " " , "" );
-			key = TextHandlerConfig.handle(this.listKeyHandlers, key, toTag);
+			String key = TextHandlerConfig.handle(this.listKeyHandlers, text, current );
 			toTag.setTextContent( key );
 			ruleContext.addEntry( key, text );
 			current.appendChild( toTag );
