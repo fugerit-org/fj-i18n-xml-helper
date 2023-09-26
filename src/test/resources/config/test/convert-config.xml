@@ -6,7 +6,7 @@
 			<config elementFromPath="/config/bean" elementFrom="label" elementTo="labelKey">
 				<keyTextHandler id="Leaves only alphanumeric" position="prefix" mode="normalize" value="alphanumeric"/>
 				<keyTextHandler id="Add attribute value at start" position="prefix" mode="fixed" value="_"/>
-				<keyTextHandler id="Add attribute value at start" position="prefix" mode="node" value="@id"/>
+				<keyTextHandler id="Add attribute value at start" position="prefix" mode="node" value="@id" altValue="@alt" info="NA"/>
 				<keyTextHandler id="Add fixed value at start" position="prefix" mode="fixed" value="sec_"/>
 			</config>
 		</data>	

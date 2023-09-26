@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.function.SimpleValue;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -26,6 +28,8 @@ public class TextHandlerConfig {
 	@Getter @Setter private String position;
 	@Getter @Setter private String mode;
 	@Getter @Setter private String value;
+	@Getter @Setter private String altValue;
+	@Getter @Setter private String info;
 	
 	public static final String POSITION_PREFIX = "prefix";
 	public static final String POSITION_SUFFIX = "suffix";
@@ -33,6 +37,7 @@ public class TextHandlerConfig {
 	public static final String MODE_FIXED = "fixed";
 	public static final String MODE_NODE = "node";
 	public static final String MODE_NORMALIZE = "normalize";
+	public static final String MODE_CUT = "cut";
 
 	public static final String MODE_NORMALIZE_REMOVE_WHITESPACES = "removeWhitespaces";
 	public static final String MODE_NORMALIZE_ALPHANUMERIC = "alphanumeric";
@@ -59,6 +64,24 @@ public class TextHandlerConfig {
 		return output;
 	}
 	
+	private static String extract( final Element node, String inputText, String path ) throws XPathExpressionException {
+		String text = null;
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		NodeList atts = (NodeList) xPath.compile( path ).evaluate( node, XPathConstants.NODESET) ;
+		if ( atts.getLength() > 0 ) {
+			text = atts.item(0).getNodeValue();
+		}
+		return text;
+	}
+	
+	private String node( final Element node, String inputText ) throws XPathExpressionException {
+		String text = extract(node, inputText, this.value); 
+		if ( text == null && this.altValue != null ) {
+			text = extract(node, inputText, this.altValue );
+		}
+		return normalize( StringUtils.valueWithDefault( text , StringUtils.valueWithDefault( this.info, "" ) ), MODE_NORMALIZE_ALPHANUMERIC );
+	}
+	
 	private String apply( String input, final Element node ) {
 		return SafeFunction.get( () -> {
 			String output = input;
@@ -66,14 +89,16 @@ public class TextHandlerConfig {
 			String text = "";
 			// mode
 			if ( MODE_NODE.equalsIgnoreCase( this.mode ) ) {
-				XPath xPath = XPathFactory.newInstance().newXPath();
-				NodeList atts = (NodeList) xPath.compile( this.value ).evaluate( node, XPathConstants.NODESET) ;
-				if ( atts.getLength() > 0 ) {
-					text = atts.item(0).getNodeValue();
-				}
+				text = this.node(node, input);
 			} else if ( MODE_NORMALIZE.equalsIgnoreCase( this.mode ) ) {
 				// this mode rewrite output
 				output = normalize( output, this.value );
+			} else if ( MODE_CUT.equalsIgnoreCase( this.mode ) ) {
+				// this mode rewrite output
+				int maxLengh = Integer.parseInt( this.value );
+				if ( output.length() > maxLengh ) {
+					output = output.substring( 0, maxLengh );
+				}
 			} else {
 				text = value;
 			}
