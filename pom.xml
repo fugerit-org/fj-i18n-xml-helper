@@ -3,6 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>fj-i18n-xml-helper</artifactId>
+	<groupId>org.fugerit.java</groupId>
 
 	<parent>
 		<groupId>org.fugerit.java.universe</groupId>
@@ -13,7 +14,7 @@
 
 	<name>XML label extract helper</name>
 	<description>Project to extract xml attributes or alements label and converting to property keys</description>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 
 	<licenses>
 		<license>

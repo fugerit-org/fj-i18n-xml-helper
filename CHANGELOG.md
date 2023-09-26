@@ -14,3 +14,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tool and API mode
 - bundled rules for LabelExtract and ElementRemove
 - badges and documentation
+- sonar cloud and build workflow
