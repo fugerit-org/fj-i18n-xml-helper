@@ -47,9 +47,7 @@ public class I18NXmlHandler {
 		log.info( "handle file : {} -> {}", inputXml, outputXml );
 		if ( inputXml.isDirectory() ) {
 			for ( File currentXml : inputXml.listFiles( context.getFileFilter() ) ) {
-				if ( !outputXml.exists() ) {
-					log.debug( "creates output folder : {}", outputXml.mkdir() );
-				}
+				log.debug( "creates output folder : {}", outputXml.mkdir() );
 				this.handleXmlFile(context, currentXml, new File( outputXml, currentXml.getName() ) , ruleContext, rules);
 			}
 		} else {

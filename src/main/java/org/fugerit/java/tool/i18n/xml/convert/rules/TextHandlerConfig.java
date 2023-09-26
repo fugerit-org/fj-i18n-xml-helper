@@ -64,7 +64,7 @@ public class TextHandlerConfig {
 		return output;
 	}
 	
-	private static String extract( final Element node, String inputText, String path ) throws XPathExpressionException {
+	private static String extract( final Element node, String path ) throws XPathExpressionException {
 		String text = null;
 		XPath xPath = XPathFactory.newInstance().newXPath();
 		NodeList atts = (NodeList) xPath.compile( path ).evaluate( node, XPathConstants.NODESET) ;
@@ -75,9 +75,9 @@ public class TextHandlerConfig {
 	}
 	
 	private String node( final Element node, String inputText ) throws XPathExpressionException {
-		String text = extract(node, inputText, this.value); 
+		String text = extract(node, this.value); 
 		if ( text == null && this.altValue != null ) {
-			text = extract(node, inputText, this.altValue );
+			text = extract(node, this.altValue );
 		}
 		return normalize( StringUtils.valueWithDefault( text , StringUtils.valueWithDefault( this.info, "" ) ), MODE_NORMALIZE_ALPHANUMERIC );
 	}
