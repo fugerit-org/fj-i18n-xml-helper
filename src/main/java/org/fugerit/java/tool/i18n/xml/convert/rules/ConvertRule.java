@@ -1,4 +1,4 @@
-package org.fugerit.java.tool.i18n.xml.config;
+package org.fugerit.java.tool.i18n.xml.convert.rules;
 
 import org.fugerit.java.core.xml.XMLException;
 import org.w3c.dom.Element;

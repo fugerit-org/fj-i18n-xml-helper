@@ -1,22 +1,22 @@
 <config>
 	<bean id="1.4">
-		<field>field1</field>
+		<field>field11</field>
 		<label>Test label 1</label>
 	</bean>
 	<bean id="1.5">
-		<field>field2</field>
+		<field>field12</field>
 		<label>Test label 2</label>
 	</bean>
 	<bean id="1.6">
-		<field>field4</field>
+		<field>field14</field>
 		<label>Test label 4</label>
 	</bean>
 	<bean id="2.1">
-		<field>field5</field>
+		<field>field15</field>
 		<label>Test label 5</label>
 	</bean>
 	<bean id="3.3">
-		<field>field6</field>
+		<field>field16</field>
 		<label>Test label 6</label>
 	</bean>
 </config>

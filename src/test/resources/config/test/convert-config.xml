@@ -1,11 +1,16 @@
 <convert-config user-catalog="default-catalog">
 
 	<factory id="default-catalog">
-		<data id="test1" info="test1" type="org.fugerit.java.tool.i18n.xml.config.LabelConvertRule">
+		<data id="labelKey" info="Cretes label key element and store content of label" 
+			type="org.fugerit.java.tool.i18n.xml.convert.rules.bundled.LabelExtract">
 			<config elementFromPath="/config/bean" elementFrom="label" elementTo="labelKey" removeFromTag="true">
-				<prefix mode="fixed" value="sec_"/>
-				<prefix mode="node" value="@id"/>
+				<keyTextHandler id="Add fixed value at start" position="prefix" mode="fixed" value="sec_"/>
+				<keyTextHandler id="Add attribute value at start" position="prefix" mode="node" value="@id"/>
 			</config>
+		</data>	
+		<data id="labelRemove" info="remove label element" 
+			type="org.fugerit.java.tool.i18n.xml.convert.rules.bundled.ElementRemove">
+			<config elementToRemovePath="/config/bean/label"/>
 		</data>	
 	</factory>
 
