@@ -19,4 +19,12 @@
 		<field>field16</field>
 		<label>Test label 6</label>
 	</bean>
+	<bean alt="Test altMode">
+		<field>field17</field>
+		<label>Test label 7</label>
+	</bean>	
+	<bean>
+		<field>field17</field>
+		<label>Test info</label>
+	</bean>		
 </config>
