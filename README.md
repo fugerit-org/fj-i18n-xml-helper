@@ -56,12 +56,12 @@ See sections on parameters and convert-config for more info.
 
 |parameter           |required|description                                                                                            |
 |--------------------|--------|-------------------------------------------------------------------------------------------------------|
-|input-xml           |true    |The input path to XML, if a directory all files will be handled recursively.                           |
-|output-xml          |true    |The output path where to produce the XML, if input is a directory, output MUST be too.                 |
-|output-properties   |true    |The output xml properties containing the processed labels.                                             |
-|convert-config      |true    |Convert rules configuration XML path.                                                                  |
-|filter-ext          |false   |A extension filter, if inputXml is directory, only files matching the extension will be processed.     |
-|catalog-rule-id     |false   |if set, the rule catalog in convert-config will be used instead of the default one.                    |
+|input-xml           |`true` |The input path to XML, if a directory all files will be handled recursively.                           |
+|output-xml          |`true` |The output path where to produce the XML, if input is a directory, output MUST be too.                 |
+|output-properties   |`true` |The output xml properties containing the processed labels.                                             |
+|convert-config      |`true` |Convert rules configuration XML path.                                                                  |
+|filter-ext          |`false`|A extension filter, if inputXml is directory, only files matching the extension will be processed.     |
+|catalog-rule-id     |`false`|if set, the rule catalog in convert-config will be used instead of the default one.                    |
 
 
 ## 4. convert-config cheat sheet
@@ -120,7 +120,7 @@ In some rules it is possible to set a chain of handlers, any handlers can have t
     - 'fixed' : the *value* attribute will be simply added
     - 'node' : will do a xpath search on current element for *value* path, and the value will be added (1), the found value will be normalized to aphanumeric.
     - 'normalize' : if *value* is 'removeWhitespaces' will simply remove whitespaces, if 'alphanumeric' will remove all non alphanumeric characters. 
-    - 'cute' : *value* should be the maximum size of the key
+    - 'cut' : *value* should be the maximum size of the key
 - *value* : see above for *mode* attribute. 
 - *altValue* : may sometimes be used by some *mode*
 - *info* : may sometimes be used by some *mode*

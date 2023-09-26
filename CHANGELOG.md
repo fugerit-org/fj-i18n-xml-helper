@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Fixed sample convert-config.xml documentation
+- Typo in README.md
 
 ## [0.1.1] - 2023-09-26
 
