@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+### Fixed
 
-- Fixed sample convert-config.xml documentation
+- java runtime version in README.md set to 11
+- sample convert-config.xml documentation
 - Typo in README.md
+- Typo in CHANGELOG.md
 
 ## [0.1.1] - 2023-09-26
 
