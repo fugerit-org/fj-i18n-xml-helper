@@ -32,7 +32,11 @@ public class TextHandlerConfig {
 	
 	public static final String MODE_FIXED = "fixed";
 	public static final String MODE_NODE = "node";
-	
+	public static final String MODE_NORMALIZE = "normalize";
+
+	public static final String MODE_NORMALIZE_REMOVE_WHITESPACES = "removeWhitespaces";
+	public static final String MODE_NORMALIZE_ALPHANUMERIC = "alphanumeric";
+
 	public static List<TextHandlerConfig> parse( Element tag, String childTagName ) {
 		List<TextHandlerConfig> res = new ArrayList<>();
 		NodeList list = tag.getElementsByTagName(childTagName);
@@ -43,6 +47,16 @@ public class TextHandlerConfig {
 			res.add( config );
 		}
 		return res;
+	}
+	
+	private static String normalize( String inputText, String option ) {
+		String output = null;
+		if ( MODE_NORMALIZE_ALPHANUMERIC.equalsIgnoreCase( option ) ) {
+			output = inputText.replaceAll( "[^a-zA-Z0-9]" , "" );
+		} else {
+			output = inputText.replace( " " , "" );
+		}
+		return output;
 	}
 	
 	private String apply( String input, final Element node ) {
@@ -57,6 +71,9 @@ public class TextHandlerConfig {
 				if ( atts.getLength() > 0 ) {
 					text = atts.item(0).getNodeValue();
 				}
+			} else if ( MODE_NORMALIZE.equalsIgnoreCase( this.mode ) ) {
+				// this mode rewrite output
+				output = normalize( output, this.value );
 			} else {
 				text = value;
 			}

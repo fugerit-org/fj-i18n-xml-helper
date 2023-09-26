@@ -46,7 +46,7 @@ public class I18NXmlHandler {
 	private void handleXmlFile( I18NXmlContext context, File inputXml, File outputXml, RuleContext ruleContext, Collection<FactoryType> rules ) throws IOException, XMLException, ClassNotFoundException, NoSuchMethodException, ConfigException {
 		log.info( "handle file : {} -> {}", inputXml, outputXml );
 		if ( inputXml.isDirectory() ) {
-			for ( File currentXml : inputXml.listFiles( f -> f.getName().endsWith( "xml" ) ) ) {
+			for ( File currentXml : inputXml.listFiles( context.getFileFilter() ) ) {
 				this.handleXmlFile(context, currentXml, new File( outputXml, currentXml.getName() ) , ruleContext, rules);
 			}
 		} else {
@@ -82,7 +82,7 @@ public class I18NXmlHandler {
 				GenericListCatalogConfig.load( fis , rulesCatalog );	
 			}
 			RuleContext ruleContext = new RuleContext();
-			Collection<FactoryType> rules = rulesCatalog.getDataList( "default-catalog" );
+			Collection<FactoryType> rules = context.getRuleCatalog( rulesCatalog );
 			File inputXml = new File( context.getInputXml() );
 			File outputXml = new File( context.getOutputXml() );
 			if ( inputXml.isDirectory() ) {
