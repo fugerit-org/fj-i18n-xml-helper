@@ -9,7 +9,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.sql.Date;
 import java.util.Collection;
 
 import org.fugerit.java.core.cfg.xml.FactoryCatalog;
@@ -17,7 +16,6 @@ import org.fugerit.java.core.cfg.xml.FactoryType;
 import org.fugerit.java.core.cfg.xml.GenericListCatalogConfig;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
-import org.fugerit.java.core.util.collection.SortedProperties;
 import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.tool.i18n.xml.config.ConvertRule;
@@ -76,9 +74,7 @@ public class I18NXmlHandler {
 				this.writeCleanXml(writer, outXmlBuffer.toString());
 				
 				// write output properties
-				SortedProperties props = new SortedProperties();
-				ruleContext.getEntries().stream().forEach( e -> props.setProperty( e.getKey(), e.getValue() ) );
-				props.storeToXML( fosProps , "Language key : "+new Date( System.currentTimeMillis() ) );
+				ruleContext.saveEntries(fosProps);
 			}
 			return res;
 		} );
