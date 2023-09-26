@@ -8,6 +8,7 @@
 				<keyTextHandler id="Add attribute value at start" position="prefix" mode="fixed" value="_"/>
 				<keyTextHandler id="Add attribute value at start" position="prefix" mode="node" value="@id" altValue="@alt" info="NA"/>
 				<keyTextHandler id="Add fixed value at start" position="prefix" mode="fixed" value="sec_"/>
+				<keyTextHandler id="Add fixed value at start" position="prefix" mode="cut" value="20"/>
 			</config>
 		</data>	
 		<data id="labelRemove" info="remove label element" 
