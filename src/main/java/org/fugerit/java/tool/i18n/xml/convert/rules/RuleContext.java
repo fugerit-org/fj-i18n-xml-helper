@@ -1,4 +1,4 @@
-package org.fugerit.java.tool.i18n.xml.config;
+package org.fugerit.java.tool.i18n.xml.convert.rules;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -37,13 +37,20 @@ public class RuleContext extends AttributeHolderDefault {
 	
 }
 
+/*
+ *	The purpose of this class is to take advantage of Properties.storeToXml() method to store the properties in the same order as they are added.
+ */
 class SortedXMLProperties extends Properties {
 	  
 	private static final long serialVersionUID = 4862022744670019101L;
 	
-	private transient LinkedHashMap<Object, Object> orderedMap = new LinkedHashMap<>();
-	
 	// setProperty() and entrySet() are the only two method we are actually using for our API.
+	
+	private transient LinkedHashMap<Object, Object> orderedMap;
+	
+	public SortedXMLProperties() {
+		this.orderedMap = new LinkedHashMap<>();
+	}
 	
 	@Override
 	public synchronized Object setProperty(String key, String value) {

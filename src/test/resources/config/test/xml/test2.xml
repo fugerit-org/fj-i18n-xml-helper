@@ -1,0 +1,14 @@
+<config>
+	<bean id="4.1">
+		<field>field21</field>
+		<label><![CDATA[Test label <> with special walues]]></label>
+	</bean>
+	<bean id="4.2">
+		<field>field22</field>
+		<label>Test label 2</label>
+	</bean>
+	<bean id="4.2">
+		<field>field23</field>
+		<label>Test label 4</label>
+	</bean>
+</config>
