@@ -2,13 +2,10 @@
 
 	<factory id="default-catalog">
 		<data id="test1" info="test1" type="org.fugerit.java.tool.i18n.xml.config.LabelConvertRule">
-			<config 
-				elementFromPath="/config/bean" 
-				elementFrom="label"
-				elementTo="labelKey"
-				prefixText="sec_"
-				prefixNode="@id"
-				removeFromTag="true"/>
+			<config elementFromPath="/config/bean" elementFrom="label" elementTo="labelKey" removeFromTag="true">
+				<prefix mode="fixed" value="sec_"/>
+				<prefix mode="node" value="@id"/>
+			</config>
 		</data>	
 	</factory>
 

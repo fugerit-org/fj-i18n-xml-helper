@@ -7,7 +7,6 @@ import javax.xml.xpath.XPathFactory;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
-import org.fugerit.java.core.util.MapEntry;
 import org.fugerit.java.core.xml.XMLException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -79,7 +78,7 @@ public class LabelConvertRule implements ConvertRule {
 				current.removeChild( fromTag );
 			}
 			toTag.setTextContent( key );
-			ruleContext.getEntries().add( new MapEntry<>( key, text ) );
+			ruleContext.addEntry( key, text );
 			current.appendChild( toTag );
 		}
 	}
