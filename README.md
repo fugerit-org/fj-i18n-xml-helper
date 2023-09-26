@@ -22,7 +22,7 @@ build :
 run : 
 
 ```
-java -jar target/dist-fj-i18n-xml-helper-0.1.0-SNAPSHOT.jar\
+java -jar target/dist-fj-i18n-xml-helper-X.X.X-SNAPSHOT.jar\
 	--input-xml src/test/resources/config/test/xml\
 	--output-xml target/test-output\
 	--output-properties target/test-properties.xml\
