@@ -74,7 +74,7 @@ public class TextHandlerConfig {
 		return text;
 	}
 	
-	private String node( final Element node, String inputText ) throws XPathExpressionException {
+	private String node( final Element node ) throws XPathExpressionException {
 		String text = extract(node, this.value); 
 		if ( text == null && this.altValue != null ) {
 			text = extract(node, this.altValue );
@@ -89,7 +89,7 @@ public class TextHandlerConfig {
 			String text = "";
 			// mode
 			if ( MODE_NODE.equalsIgnoreCase( this.mode ) ) {
-				text = this.node(node, input);
+				text = this.node(node);
 			} else if ( MODE_NORMALIZE.equalsIgnoreCase( this.mode ) ) {
 				// this mode rewrite output
 				output = normalize( output, this.value );
