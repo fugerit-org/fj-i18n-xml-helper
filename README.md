@@ -33,6 +33,16 @@ See sections on parameters and convert-config for more info.
 
 ## 2. API usage quickstart
 
+Add maven dependency : 
+
+```
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-i18n-xml-helper</artifactId>
+			<version>${fj-i18n-xml-helper-version}</version>
+		</dependency>	
+```
+
 ```
 		Properties params = new Properties();
 		params.setProperty( I18NXmlHelper.ARG_CONVERT_CONFIG , "src/test/resources/config/test/convert-config.xml" );

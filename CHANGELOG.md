@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Maven dependency section in README.md
+
 ### Fixed
 
 - java runtime version in README.md set to 11
