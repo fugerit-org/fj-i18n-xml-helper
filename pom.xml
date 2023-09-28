@@ -14,7 +14,7 @@
 
 	<name>XML label extract helper</name>
 	<description>Project to extract xml attributes or alements label and converting to property keys</description>
-	<version>0.1.3-SNAPSHOT</version>
+	<version>0.1.3</version>
 
 	<licenses>
 		<license>
