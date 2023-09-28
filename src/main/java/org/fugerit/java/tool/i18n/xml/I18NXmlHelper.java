@@ -54,7 +54,7 @@ public class I18NXmlHelper {
 	
 	
 	private static void printHelp() {
-		log.info( "help : \n\n{}", SafeIO.readStringStream( () -> ClassHelper.loadFromDefaultClassLoader( "tool/help.txt" ) ) );
+		log.info( "help : \n\n{}", SafeIO.readStringStream( () -> ClassHelper.loadFromDefaultClassLoader( "tool-config/help.txt" ) ) );
 	}
 	
 	public static int handle( Properties params ) {

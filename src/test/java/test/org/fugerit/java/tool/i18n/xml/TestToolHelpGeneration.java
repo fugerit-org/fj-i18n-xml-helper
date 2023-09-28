@@ -33,7 +33,7 @@ public class TestToolHelpGeneration {
 	
 	@Test
 	public void testGneration() throws IOException, DocException {
-		boolean ok = this.testWorker( "tool_help_default" , ToolHelpConfig.loadSafe( "cl://tool/tool-help-config.xml" ) );
+		boolean ok = this.testWorker( "tool_help_default" , ToolHelpConfig.loadSafe( "cl://tool-config/tool-help-config.xml" ) );
 		Assert.assertTrue( ok );
 	}
 	
