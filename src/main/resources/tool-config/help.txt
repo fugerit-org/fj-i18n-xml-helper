@@ -10,17 +10,16 @@ Example : java -jar target/dist-fj-i18n-xml-helper-*.jar \
 	  
 ## parameter help  
 
-	--input-xml <arg> The input path to XML, if a directory all files will be handled recursively. [default:none]
+	--input-xml <arg> The input path to XML, if a directory all files will be handled recursively.
 
-	--output-xml <arg> The output path where to produce the XML, if input is a directory, output MUST be too. [default:none]
+	--output-xml <arg> The output path where to produce the XML, if input is a directory, output MUST be too.
 
-	--output-properties <arg> The output xml properties containing the processed labels. [default:none]
+	--output-properties <arg> The output xml properties containing the processed labels.
 
-	--convert-config <arg> If set to `true`, the 'info' columns of tool parameters will be ignored.
+	--convert-config <arg> If set to `true`, the 'info' columns of tool parameters will be ignored. [default:`false`]
 
-	--filter-ext <arg> A extension filter, if inputXml is directory, only files matching the extension will be processed.
+	--filter-ext <arg> A extension filter, if inputXml is directory, only files matching the extension will be processed. [default:`false`]
 
-	--catalog-rule-id <arg> if set, the rule catalog in convert-config will be used instead of the default one.
+	--catalog-rule-id <arg> if set, the rule catalog in convert-config will be used instead of the default one. [default:`false`]
 
-	--help <arg> Print help about the tool. [default:none]
-
+	--help <arg> Print help about the tool.
