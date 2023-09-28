@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tool-help-config>
+
+	<toolName>XML label extract helper</toolName>
+	
+	<toolDescription>Utility to extract xml attributes or elements label and converting to property keys.</toolDescription>
+	
+	<commandExample>java -jar target/dist-fj-i18n-xml-helper-*.jar \
+	--input-xml src/test/resources/config/test/xml \
+	--output-xml target/test-output \
+	--output-properties target/test-properties.xml \
+	--convert-config src/test/resources/config/test/convert-config.xml
+	</commandExample>
+	
+	<param>
+		<id>`input-xml`</id>
+		<required>`true`</required>
+		<defaultValue>none</defaultValue>
+		<description>The input path to XML, if a directory all files will be handled recursively.</description>
+		<since>0.1.0</since>
+		<info>Will check only physical files</info>
+	</param>
+	
+	<param>
+		<id>`output-xml`</id>
+		<required>`true`</required>
+		<defaultValue>none</defaultValue>
+		<description>The output path where to produce the XML, if input is a directory, output MUST be too.</description>
+		<since>0.1.0</since>
+		<info>The xml file indent can be different from input.</info>
+	</param>
+	
+	<param>
+		<id>`output-properties`</id>
+		<required>`true`</required>
+		<defaultValue>none</defaultValue>
+		<description>The output xml properties containing the processed labels.</description>
+		<since>0.1.0</since>
+		<info>The order of the properties will not be random, but the same as they are found during processing.</info>
+	</param>
+	
+	<param>
+		<id>`convert-config`</id>
+		<required>`true`</required>
+		<defaultValue>`false`</defaultValue>
+		<description>If set to `true`, the 'info' columns of tool parameters will be ignored.</description>
+		<since>0.1.0</since>
+		<info>By default will check on file system. To check path on class loader, prefix with 'cl://'</info>
+	</param>
+
+	<param>
+		<id>`filter-ext`</id>
+		<required>`false`</required>
+		<defaultValue>`false`</defaultValue>
+		<description>A extension filter, if inputXml is directory, only files matching the extension will be processed.</description>
+		<since>0.1.0</since>
+		<info>Directories will be recursed regardless of this param value.</info>
+	</param>
+
+	<param>
+		<id>`catalog-rule-id`</id>
+		<required>`false`</required>
+		<defaultValue>`false`</defaultValue>
+		<description>if set, the rule catalog in convert-config will be used instead of the default one.</description>
+		<since>0.1.0</since>
+		<info>If not set, the 'use-catalog' attribute of root xml element will be checked.</info>
+	</param>
+
+	<param>
+		<id>`help`</id>
+		<required>`false`</required>
+		<defaultValue>none</defaultValue>
+		<description>Print help about the tool.</description>
+		<since>0.1.0</since>
+		<info></info>
+	</param>
+
+</tool-help-config>

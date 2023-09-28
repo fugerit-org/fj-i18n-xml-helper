@@ -22,10 +22,10 @@ build :
 run : 
 
 ```
-java -jar target/dist-fj-i18n-xml-helper-X.X.X-SNAPSHOT.jar\
-	--input-xml src/test/resources/config/test/xml\
-	--output-xml target/test-output\
-	--output-properties target/test-properties.xml\
+java -jar target/dist-fj-i18n-xml-helper-*.jar \
+	--input-xml src/test/resources/config/test/xml \
+	--output-xml target/test-output \
+	--output-properties target/test-properties.xml \
 	--convert-config src/test/resources/config/test/convert-config.xml
 ```
 
@@ -64,14 +64,15 @@ See sections on parameters and convert-config for more info.
 
 ## 3. Parameters cheat sheet
 
-|parameter           |required|description                                                                                            |
-|--------------------|--------|-------------------------------------------------------------------------------------------------------|
-|input-xml           |`true` |The input path to XML, if a directory all files will be handled recursively.                           |
-|output-xml          |`true` |The output path where to produce the XML, if input is a directory, output MUST be too.                 |
-|output-properties   |`true` |The output xml properties containing the processed labels.                                             |
-|convert-config      |`true` |Convert rules configuration XML path.                                                                  |
-|filter-ext          |`false`|A extension filter, if inputXml is directory, only files matching the extension will be processed.     |
-|catalog-rule-id     |`false`|if set, the rule catalog in convert-config will be used instead of the default one.                    |
+| **name** | **required** | **default** | **description** | **since** | **info**  |
+|---------------|---------------|---------------|---------------|---------------|---------------|
+| `input-xml` | `true` | none | The input path to XML, if a directory all files will be handled recursively. | 0.1.0 | Will check only physical files  |
+| `output-xml` | `true` | none | The output path where to produce the XML, if input is a directory, output MUST be too. | 0.1.0 | The xml file indent can be different from input.  |
+| `output-properties` | `true` | none | The output xml properties containing the processed labels. | 0.1.0 | The order of the properties will not be random, but the same as they are found during processing.  |
+| `convert-config` | `true` | `false` | If set to `true`, the 'info' columns of tool parameters will be ignored. | 0.1.0 | By default will check on file system. To check path on class loader, prefix with 'cl://'  |
+| `filter-ext` | `false` | `false` | A extension filter, if inputXml is directory, only files matching the extension will be processed. | 0.1.0 | Directories will be recursed regardless of this param value.  |
+| `catalog-rule-id` | `false` | `false` | if set, the rule catalog in convert-config will be used instead of the default one. | 0.1.0 | If not set, the 'use-catalog' attribute of root xml element will be checked.  |
+| `help` | `false` | none | Print help about the tool. | 0.1.0 |   |
 
 
 ## 4. convert-config cheat sheet

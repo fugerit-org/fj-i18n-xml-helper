@@ -7,9 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2023-09-28
+
 ### Added
 
 - Maven dependency section in README.md
+- Help command
+
+### Changed
+
+- fj-universe-tool parent set to 0.4.6
+- parameter help in readme
+- parameter convert-config now accet path in class loader by using cl:// prefix
 
 ### Fixed
 

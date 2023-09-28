@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
@@ -16,6 +17,7 @@ import org.fugerit.java.core.cfg.xml.FactoryCatalog;
 import org.fugerit.java.core.cfg.xml.FactoryType;
 import org.fugerit.java.core.cfg.xml.GenericListCatalogConfig;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.core.xml.XMLException;
@@ -79,8 +81,8 @@ public class I18NXmlHandler {
 		return SafeFunction.get( () -> {
 			int res = Result.RESULT_CODE_OK;
 			FactoryCatalog rulesCatalog = new FactoryCatalog();
-			try ( FileInputStream fis = new FileInputStream( new File( context.getConvertConfig() ) ) ) {
-				GenericListCatalogConfig.load( fis , rulesCatalog );	
+			try ( InputStream  is = StreamHelper.resolveStream( context.getConvertConfig() ) ) {
+				GenericListCatalogConfig.load( is , rulesCatalog );	
 			}
 			RuleContext ruleContext = new RuleContext();
 			Collection<FactoryType> rules = context.getRuleCatalog( rulesCatalog );
