@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- 'regex' mode for 'normalize' and 'node' text handlers.
+
 ### Changed
 
 - fj-universe-tool parent version set to 0.5.2

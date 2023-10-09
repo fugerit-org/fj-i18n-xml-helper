@@ -1,4 +1,4 @@
-<config>
+<config id="sec.9">
 	<bean id="1.4">
 		<field>field11</field>
 		<label>Test label 1</label>

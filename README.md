@@ -130,10 +130,11 @@ In some rules it is possible to set a chain of handlers, any handlers can have t
 - *mode* : 
     - 'fixed' : the *value* attribute will be simply added
     - 'node' : will do a xpath search on current element for *value* path, and the value will be added (1), the found value will be normalized to aphanumeric.
-    - 'normalize' : if *value* is 'removeWhitespaces' will simply remove whitespaces, if 'alphanumeric' will remove all non alphanumeric characters. 
+    - 'normalize' : if *value* is 'removeWhitespaces' will simply remove whitespaces, if 'alphanumeric' will remove all non alphanumeric characters. 'regex' will be the value if provided to remove not wanted characters.
     - 'cut' : *value* should be the maximum size of the key
 - *value* : see above for *mode* attribute. 
 - *altValue* : may sometimes be used by some *mode*
 - *info* : may sometimes be used by some *mode*
+- *regex* for 'node' and 'normalize', can be used to customized character removal expressions (for instance [^a-zA-Z0-9\.] will keep only alphanumeric and docs). 
 
 (1) - in 'node' mode if *value* is not found as a path, *altValue* will be tried in the same way. If again no result *info* attribute will be take as fixed value. And at last it will produce empty string.

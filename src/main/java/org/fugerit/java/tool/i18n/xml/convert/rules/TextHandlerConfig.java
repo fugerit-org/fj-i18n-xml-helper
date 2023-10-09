@@ -30,6 +30,7 @@ public class TextHandlerConfig {
 	@Getter @Setter private String value;
 	@Getter @Setter private String altValue;
 	@Getter @Setter private String info;
+	@Getter @Setter private String regex;
 	
 	public static final String POSITION_PREFIX = "prefix";
 	public static final String POSITION_SUFFIX = "suffix";
@@ -40,6 +41,7 @@ public class TextHandlerConfig {
 	public static final String MODE_CUT = "cut";
 
 	public static final String MODE_NORMALIZE_REMOVE_WHITESPACES = "removeWhitespaces";
+	public static final String MODE_NORMALIZE_REGEX = "regex";
 	public static final String MODE_NORMALIZE_ALPHANUMERIC = "alphanumeric";
 
 	public static List<TextHandlerConfig> parse( Element tag, String childTagName ) {
@@ -54,9 +56,11 @@ public class TextHandlerConfig {
 		return res;
 	}
 	
-	private static String normalize( String inputText, String option ) {
+	private static String normalize( String inputText, String option, String regex ) {
 		String output = null;
-		if ( MODE_NORMALIZE_ALPHANUMERIC.equalsIgnoreCase( option ) ) {
+		if ( StringUtils.isNotEmpty( regex ) ) {
+			output = inputText.replace( regex , "" );
+		} else  if ( MODE_NORMALIZE_ALPHANUMERIC.equalsIgnoreCase( option ) ) {
 			output = inputText.replaceAll( "[^a-zA-Z0-9]" , "" );
 		} else {
 			output = inputText.replace( " " , "" );
@@ -79,7 +83,7 @@ public class TextHandlerConfig {
 		if ( text == null && this.altValue != null ) {
 			text = extract(node, this.altValue );
 		}
-		return normalize( StringUtils.valueWithDefault( text , StringUtils.valueWithDefault( this.info, "" ) ), MODE_NORMALIZE_ALPHANUMERIC );
+		return normalize( StringUtils.valueWithDefault( text , StringUtils.valueWithDefault( this.info, "" ) ), MODE_NORMALIZE_ALPHANUMERIC, this.regex );
 	}
 	
 	private String apply( String input, final Element node ) {
@@ -92,7 +96,7 @@ public class TextHandlerConfig {
 				text = this.node(node);
 			} else if ( MODE_NORMALIZE.equalsIgnoreCase( this.mode ) ) {
 				// this mode rewrite output
-				output = normalize( output, this.value );
+				output = normalize( output, this.value, this.regex );
 			} else if ( MODE_CUT.equalsIgnoreCase( this.mode ) ) {
 				// this mode rewrite output
 				int maxLengh = Integer.parseInt( this.value );

@@ -4,7 +4,9 @@
 		<data id="labelKey" info="Cretes label key element and store content of label" 
 			type="org.fugerit.java.tool.i18n.xml.convert.rules.bundled.LabelExtract">
 			<config elementFromPath="/config/bean" elementFrom="label" elementTo="labelKey">
-				<keyTextHandler id="Leaves only alphanumeric" position="prefix" mode="normalize" value="alphanumeric"/>
+				<keyTextHandler id="Leaves only alphanumeric" position="prefix" mode="normalize" value="removeWhitespaces"/>
+				<keyTextHandler id="Add fixed value '_' at start" position="prefix" mode="fixed" value="_"/>
+				<keyTextHandler id="Add 'id' of ancestor 'config'" position="prefix" mode="node" value="//ancestor::config/@id" info="NA" regex="[^a-zA-Z0-9\.]"/>
 				<keyTextHandler id="Add fixed value '_' at start" position="prefix" mode="fixed" value="_"/>
 				<!--
 					this handler will take the @id ('value' attribute)
@@ -27,7 +29,7 @@
 		<data id="labelKey" info="Cretes label key element and store content of label" 
 			type="org.fugerit.java.tool.i18n.xml.convert.rules.bundled.LabelExtract">
 			<config elementFromPath="/config/bean" elementFrom="label" elementTo="labelKey" removeFromTag="true">
-				<keyTextHandler id="Leaves only alphanumeric" position="prefix" mode="normalize" value="alphanumeric"/>
+				<keyTextHandler id="Leaves only alphanumeric" position="suffix" mode="normalize" value="alphanumeric"/>
 			</config>
 		</data>	
 	</factory>
