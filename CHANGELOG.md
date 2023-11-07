@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-11-07
+
+### Added
+
+- parameter 'output-xslt' (use 'legacy' value for previous behavior, can lead to different output based on [jdk](https://bugs.openjdk.org/browse/JDK-8262285?attachmentViewMode=list))
+
 ### Changed
 
 - fj-universe-tool parent version set to 0.5.5
+- use a custom [xlst](src/main/resources/tool-i18n-xslt/default-print-xml.xslt) by default for xml output handling
+
+### Fixed
+
+- different output based on [jdk](https://bugs.openjdk.org/browse/JDK-8262285?attachmentViewMode=list)
 
 ## [0.1.4] - 2023-10-09
 

@@ -54,6 +54,7 @@ public class TestI18NXmlHelper {
 		params.setProperty( I18NXmlHelper.ARG_INPUT_XML , "src/test/resources/config/test/xml" );
 		params.setProperty( I18NXmlHelper.ARG_OUTPUT_XML , "target/test_xml" );
 		params.setProperty( I18NXmlHelper.ARG_OUTPUT_PROPERTIES , "target/test_xml/test1_properties.xml" );
+		params.setProperty( I18NXmlHelper.ARG_OUTPUT_XSLT , I18NXmlHelper.ARG_OUTPUT_XSLT_LEGACY );
 		params.setProperty( I18NXmlHelper.ARG_FILTER_EXT , "xml" );		// will filter files not ending with 'xml'
 		try {
 			int res = I18NXmlHelper.handle( params );

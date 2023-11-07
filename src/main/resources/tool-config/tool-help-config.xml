@@ -67,11 +67,20 @@
 	</param>
 
 	<param>
+		<id>`output-xslt`</id>
+		<required>`false`</required>
+		<defaultValue>none</defaultValue>
+		<description>The path to an xslt, if not set a default xlst will be used, if set to 'legacy' can lead  lead to different behaviors depending on JDK used.</description>
+		<since>0.1.0</since>
+		<info>See https://bugs.openjdk.org/browse/JDK-8262285?attachmentViewMode=list</info>
+	</param>
+
+	<param>
 		<id>`help`</id>
 		<required>`false`</required>
 		<defaultValue>none</defaultValue>
 		<description>Print help about the tool.</description>
-		<since>0.1.0</since>
+		<since>0.2.0</since>
 		<info></info>
 	</param>
 

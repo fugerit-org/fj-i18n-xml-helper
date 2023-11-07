@@ -48,6 +48,14 @@ public class I18NXmlHelper {
 	public static final String ARG_CATALOG_RULE_ID = "catalog-rule-id";
 	
 	/**
+	 * [OPTIONAL] The path to an xslt, if not set a default xlst will be used, if set to 'legacy' can lead  lead to different behaviors depending on JDK used, 
+	 * see https://bugs.openjdk.org/browse/JDK-8262285?attachmentViewMode=list)
+	 */
+	public static final String ARG_OUTPUT_XSLT = "output-xslt";
+	
+	public static final String ARG_OUTPUT_XSLT_LEGACY = "legacy";
+	
+	/**
 	 * [OPTIONAL] print help.    
 	 */
 	public static final String ARG_HELP = "help";

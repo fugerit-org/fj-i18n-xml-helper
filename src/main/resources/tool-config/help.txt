@@ -22,4 +22,6 @@ Example : java -jar target/dist-fj-i18n-xml-helper-*.jar \
 
 	--catalog-rule-id <arg> if set, the rule catalog in convert-config will be used instead of the default one. [default:`false`]
 
+	--output-xslt <arg> The path to an xslt, if not set a default xlst will be used, if set to 'legacy' can lead  lead to different behaviors depending on JDK used.
+
 	--help <arg> Print help about the tool.

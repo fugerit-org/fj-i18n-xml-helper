@@ -72,6 +72,7 @@ See sections on parameters and convert-config for more info.
 | `convert-config` | `true` | `false` | If set to `true`, the 'info' columns of tool parameters will be ignored. | 0.1.0 | By default will check on file system. To check path on class loader, prefix with 'cl://'  |
 | `filter-ext` | `false` | `false` | A extension filter, if inputXml is directory, only files matching the extension will be processed. | 0.1.0 | Directories will be recursed regardless of this param value.  |
 | `catalog-rule-id` | `false` | `false` | if set, the rule catalog in convert-config will be used instead of the default one. | 0.1.0 | If not set, the 'use-catalog' attribute of root xml element will be checked.  |
+| `output-xslt` | `false` | none | The path to an xslt, if not set a default xlst will be used, if set to 'legacy' can lead  lead to different behaviors depending on JDK used. | 0.1.0 | See https://bugs.openjdk.org/browse/JDK-8262285?attachmentViewMode=list)  |
 | `help` | `false` | none | Print help about the tool. | 0.1.0 |   |
 
 

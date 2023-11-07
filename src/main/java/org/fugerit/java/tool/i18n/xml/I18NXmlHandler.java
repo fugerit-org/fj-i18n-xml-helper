@@ -10,16 +10,25 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Collection;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.xml.FactoryCatalog;
 import org.fugerit.java.core.cfg.xml.FactoryType;
 import org.fugerit.java.core.cfg.xml.GenericListCatalogConfig;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.result.Result;
+import org.fugerit.java.core.xml.TransformerXML;
 import org.fugerit.java.core.xml.XMLException;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.tool.i18n.xml.convert.rules.ConvertRule;
@@ -37,12 +46,23 @@ public class I18NXmlHandler {
 		try ( BufferedReader cleaner = new BufferedReader( new StringReader( content ) ) ) {
 			// maybe not the most elegant way but it does the job.
 			cleaner.lines().forEach( l -> {
-					// all lines containing only whit spaces or tabs are not written to the output.
+					// all lines containing only white spaces or tabs are not written to the output.
 					if ( !l.replace( "\t" , "").trim().isEmpty() ) {
 						writer.println( l );
 					}
 				});
 		}
+	}
+	
+	private void handleCurrentRule(RuleContext ruleContext, FactoryType ruleConfig, Element root) throws XMLException, ClassNotFoundException, NoSuchMethodException, ConfigException {
+		ConvertRule currentRule = (ConvertRule) ClassHelper.newInstance( ruleConfig.getType() );
+		if ( ruleConfig.getElement() != null ) {
+			NodeList kids = ruleConfig.getElement().getElementsByTagName( "config" );
+			if ( kids.getLength() > 0 ) {
+				currentRule.config( (Element) kids.item( 0 ) );	
+			}
+		}
+		currentRule.apply(root, ruleContext);
 	}
 	
 	private void handleXmlFile( I18NXmlContext context, File inputXml, File outputXml, RuleContext ruleContext, Collection<FactoryType> rules ) throws IOException, XMLException, ClassNotFoundException, NoSuchMethodException, ConfigException {
@@ -61,20 +81,32 @@ public class I18NXmlHandler {
 				ruleContext.setDocument(doc);
 				for ( FactoryType ruleConfig : rules ) {
 					log.info( "ruleConfig : {} - {}", ruleConfig.getId(), ruleConfig.getType() );
-					ConvertRule currentRule = (ConvertRule) ClassHelper.newInstance( ruleConfig.getType() );
-					if ( ruleConfig.getElement() != null ) {
-						NodeList kids = ruleConfig.getElement().getElementsByTagName( "config" );
-						if ( kids.getLength() > 0 ) {
-							currentRule.config( (Element) kids.item( 0 ) );	
-						}
-					}
-					currentRule.apply(root, ruleContext);
+					this.handleCurrentRule(ruleContext, ruleConfig, root);
 				}
 				// write output xml
-				DOMIO.writeDOMIndent( doc , outXmlBuffer );
-				this.writeCleanXml(writer, outXmlBuffer.toString());
+				String outputXslt = context.getParams().getProperty( I18NXmlHelper.ARG_OUTPUT_XSLT, "cl://tool-i18n-xslt/default-print-xml.xslt" );
+				if ( I18NXmlHelper.ARG_OUTPUT_XSLT_LEGACY.equalsIgnoreCase( outputXslt )  ) {
+					DOMIO.writeDOMIndent(root, outXmlBuffer);
+					this.writeCleanXml(writer, outXmlBuffer.toString());
+				} else {
+					this.writeIndent(doc, writer, outputXslt);
+				}
 			}
 		}
+	}
+	
+	private void writeIndent(Document doc, Writer outXmlBuffer, String xsltPath ) throws XMLException {
+		XMLException.apply( () -> {
+			log.info( "{} : {}" , I18NXmlHelper.ARG_OUTPUT_XSLT, xsltPath );
+			String xsltDef = StreamIO.readString( StreamHelper.resolveReader( xsltPath ) );
+			try ( StringReader reader = new StringReader( xsltDef ) ) {
+		        Transformer transformer = TransformerXML.newTransformer( new StreamSource( reader ) );
+		        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+		        transformer.transform(new DOMSource(doc), new StreamResult( outXmlBuffer ) );
+		      }
+		} );
 	}
 	
 	public int handle( I18NXmlContext context ) {
