@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-universe-tool parent version set to 0.5.6
+- fj-universe-tool parent version set to 0.5.8
 
 ## [0.2.0] - 2023-11-07
 
