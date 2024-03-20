@@ -1,27 +1,21 @@
-# XML label extract helper
-  
-Utility to extract xml attributes or elements label and converting to property keys.
-  
-Example : java -jar target/dist-fj-i18n-xml-helper-*.jar \
-	--input-xml src/test/resources/config/test/xml \
-	--output-xml target/test-output \
-	--output-properties target/test-properties.xml \
-	--convert-config src/test/resources/config/test/convert-config.xml
-	  
-## parameter help  
+# Fugerit tool postman
 
-	--input-xml <arg> The input path to XML, if a directory all files will be handled recursively.
+Sample utilities for Postman.
 
-	--output-xml <arg> The output path where to produce the XML, if input is a directory, output MUST be too.
+Example : java -jar target/dist-fj-tool-postman-*.jar \
+	--fun CollectionEnvMerge\
+    --collection-path src/test/resources/sample/fj-doc-playground-quarkus.postman_collection.json\
+    --environment-path src/test/resources/sample/fugerit_ampere04.postman_environment.json\
+	--output-path target/fj-doc-playground-quarkus-sample.postman_collection.json
 
-	--output-properties <arg> The output xml properties containing the processed labels.
 
-	--convert-config <arg> If set to `true`, the 'info' columns of tool parameters will be ignored. [default:`false`]
+## parameter help
 
-	--filter-ext <arg> A extension filter, if inputXml is directory, only files matching the extension will be processed. [default:`false`]
+	--fun <arg> The function to activate.
 
-	--catalog-rule-id <arg> if set, the rule catalog in convert-config will be used instead of the default one. [default:`false`]
+	--collection-path <arg> Path of postman collection to merge.
 
-	--output-xslt <arg> The path to an xslt, if not set a default xlst will be used, if set to 'legacy' can lead  lead to different behaviors depending on JDK used.
+	--environment-path <arg> Path of postman environment to merge.
 
-	--help <arg> Print help about the tool.
+	--output-path <arg> Path of the merged collection.
+
