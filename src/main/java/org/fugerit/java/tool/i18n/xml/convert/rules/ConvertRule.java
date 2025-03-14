@@ -5,8 +5,8 @@ import org.w3c.dom.Element;
 
 public interface ConvertRule {
 
-	void config( Element config ) throws XMLException;
-	
-	void apply( Element node, RuleContext ruleContext ) throws XMLException;
-	
+    void config(Element config) throws XMLException;
+
+    void apply(Element node, RuleContext ruleContext) throws XMLException;
+
 }

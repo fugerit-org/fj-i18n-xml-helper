@@ -19,27 +19,38 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class I18NXmlContext {
 
-	public static final String ATT_USE_CATALOG = "use-catalog";		// general property for default catalog
-	
-	@Getter @NonNull private String inputXml;
-	@Getter @NonNull private String outputXml;
-	@Getter @NonNull private String outputProperties;
-	@Getter @NonNull private String convertConfig;
-	@Getter @NonNull private Properties params;
-	
-	public FileFilter getFileFilter() {
-		String ext = params.getProperty( I18NXmlHelper.ARG_FILTER_EXT );
-		if ( StringUtils.isEmpty( ext ) ) {
-			return f -> Boolean.TRUE.booleanValue();
-		} else {
-			return f -> f.isDirectory() || f.getName().endsWith( ext );
-		}
-	}
-	
-	public Collection<FactoryType> getRuleCatalog( FactoryCatalog catalog ) {
-		String catalogId = params.getProperty( I18NXmlHelper.ARG_CATALOG_RULE_ID , catalog.getGeneralProps().getProperty( ATT_USE_CATALOG ) );
-		log.info( "catalogId : {}", catalogId );
-		return catalog.getDataList( catalogId );
-	}
-	
+    public static final String ATT_USE_CATALOG = "use-catalog"; // general property for default catalog
+
+    @Getter
+    @NonNull
+    private String inputXml;
+    @Getter
+    @NonNull
+    private String outputXml;
+    @Getter
+    @NonNull
+    private String outputProperties;
+    @Getter
+    @NonNull
+    private String convertConfig;
+    @Getter
+    @NonNull
+    private Properties params;
+
+    public FileFilter getFileFilter() {
+        String ext = params.getProperty(I18NXmlHelper.ARG_FILTER_EXT);
+        if (StringUtils.isEmpty(ext)) {
+            return f -> Boolean.TRUE.booleanValue();
+        } else {
+            return f -> f.isDirectory() || f.getName().endsWith(ext);
+        }
+    }
+
+    public Collection<FactoryType> getRuleCatalog(FactoryCatalog catalog) {
+        String catalogId = params.getProperty(I18NXmlHelper.ARG_CATALOG_RULE_ID,
+                catalog.getGeneralProps().getProperty(ATT_USE_CATALOG));
+        log.info("catalogId : {}", catalogId);
+        return catalog.getDataList(catalogId);
+    }
+
 }
